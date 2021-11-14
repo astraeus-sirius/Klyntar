@@ -20,6 +20,7 @@ resource "aws_s3_bucket_object" "images" {
   bucket = module.venom_cloud.s3_bucket
   key    = "/images/${each.value}"
   source = "${path.cwd}/images/${each.value}"
+  content_type = "image/jpg"
   etag   = filemd5("${path.cwd}/images/${each.value}") # changes file to latest version
 }
 
