@@ -19,6 +19,6 @@ module "venom_cloud" {
   error_document      = "error.html" # absolute path in the S3 bucket
 
   tags = {
-    "Environment" = "Dev"
+    "Environment" = local.env
   }
 }
