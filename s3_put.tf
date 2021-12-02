@@ -36,7 +36,7 @@ resource "aws_s3_bucket_object" "assets" {
 resource "aws_s3_bucket_object" "policy" {
   bucket       = module.venom_cloud.s3_bucket
   key          = "policy.json"
-  source       = templatefile(
+  content       = templatefile(
                   "${path.cwd}/policy.json", {
                     bucket = module.venom_cloud.s3_bucket
                   }
