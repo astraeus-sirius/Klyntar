@@ -32,3 +32,15 @@ resource "aws_s3_bucket_object" "assets" {
   source = "${path.cwd}/assets/${each.value}"
   etag   = filemd5("${path.cwd}/assets/${each.value}") # changes file to latest version
 }
+
+resource "aws_s3_bucket_object" "policy" {
+  bucket       = module.venom_cloud.s3_bucket
+  key          = "policy.json"
+  source       = templatefile(
+                  "${path.cwd}/policy.json", {
+                    bucket = module.venom_cloud.s3_bucket
+                  }
+                  )
+  content_type = "text/json"
+  etag         = filemd5("${path.cwd}/policy.json") # changes file to latest version
+}
